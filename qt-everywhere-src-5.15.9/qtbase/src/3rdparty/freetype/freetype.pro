@@ -12,52 +12,43 @@ MODULE_EXT_HEADERS_DIR = $$PWD/include
 load(qt_helper_lib)
 
 SOURCES += \
-    $$PWD/src/autofit/afangles.c \
-    $$PWD/src/autofit/afdummy.c \
-    $$PWD/src/autofit/afglobal.c \
-    $$PWD/src/autofit/afhints.c \
-    $$PWD/src/autofit/aflatin.c \
-    $$PWD/src/autofit/afloader.c \
-    $$PWD/src/autofit/afmodule.c \
     $$PWD/src/autofit/autofit.c \
     $$PWD/src/base/ftbase.c \
     $$PWD/src/base/ftbitmap.c \
     $$PWD/src/base/ftbbox.c \
-    $$PWD/src/base/ftdebug.c \
+    $$PWD/src/base/ftbdf.c \
+    $$PWD/src/base/ftcid.c \
+    $$PWD/src/base/ftfstype.c \
+    $$PWD/src/base/ftgasp.c \
+    $$PWD/src/base/ftgxval.c \
     $$PWD/src/base/ftglyph.c \
-    $$PWD/src/base/ftfntfmt.c \
     $$PWD/src/base/ftinit.c \
     $$PWD/src/base/ftlcdfil.c \
     $$PWD/src/base/ftmm.c \
+    $$PWD/src/base/ftotval.c \
+    $$PWD/src/base/ftpatent.c \
+    $$PWD/src/base/ftpfr.c \
+    $$PWD/src/base/ftstroke.c \
     $$PWD/src/base/ftsynth.c \
     $$PWD/src/base/fttype1.c \
+    $$PWD/src/base/ftwinfnt.c \
     $$PWD/src/bdf/bdf.c \
+    $$PWD/src/bzip2/ftbzip2.c \
     $$PWD/src/cache/ftcache.c \
     $$PWD/src/cff/cff.c \
     $$PWD/src/cid/type1cid.c \
     $$PWD/src/gzip/ftgzip.c \
     $$PWD/src/lzw/ftlzw.c \
-    $$PWD/src/otvalid/otvalid.c \
-    $$PWD/src/otvalid/otvbase.c \
-    $$PWD/src/otvalid/otvcommn.c \
-    $$PWD/src/otvalid/otvgdef.c \
-    $$PWD/src/otvalid/otvgpos.c \
-    $$PWD/src/otvalid/otvgsub.c \
-    $$PWD/src/otvalid/otvjstf.c \
-    $$PWD/src/otvalid/otvmod.c \
     $$PWD/src/pcf/pcf.c \
     $$PWD/src/pfr/pfr.c \
     $$PWD/src/psaux/psaux.c \
     $$PWD/src/pshinter/pshinter.c \
-    $$PWD/src/psnames/psmodule.c \
+    $$PWD/src/psnames/psnames.c \
     $$PWD/src/raster/raster.c \
-    $$PWD/src/sdf/ftsdfrend.c \
-    $$PWD/src/sdf/ftbsdf.c \
-    $$PWD/src/sdf/ftsdf.c \
-    $$PWD/src/sdf/ftsdfcommon.c \
+    $$PWD/src/sdf/sdf.c \
     $$PWD/src/sfnt/sfnt.c \
     $$PWD/src/smooth/smooth.c \
-    $$PWD/src/svg/ftsvg.c \
+    $$PWD/src/svg/svg.c \
     $$PWD/src/truetype/truetype.c \
     $$PWD/src/type1/type1.c \
     $$PWD/src/type42/type42.c \
