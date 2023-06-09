@@ -4,7 +4,7 @@
  *
  *   FreeType CharMap cache (body)
  *
- * Copyright (C) 2000-2023 by
+ * Copyright (C) 2000-2022 by
  * David Turner, Robert Wilhelm, and Werner Lemberg.
  *
  * This file is part of the FreeType project, and may only be used,
@@ -295,19 +295,21 @@
       if ( error )
         goto Exit;
 
-      if ( cmap_index < face->num_charmaps )
+      if ( (FT_UInt)cmap_index < (FT_UInt)face->num_charmaps )
       {
-        FT_CharMap  old  = face->charmap;
-        FT_CharMap  cmap = face->charmaps[cmap_index];
+        FT_CharMap  old, cmap  = NULL;
 
 
-        if ( !no_cmap_change )
-          face->charmap = cmap;
+        old  = face->charmap;
+        cmap = face->charmaps[cmap_index];
+
+        if ( old != cmap && !no_cmap_change )
+          FT_Set_Charmap( face, cmap );
 
         gindex = FT_Get_Char_Index( face, char_code );
 
-        if ( !no_cmap_change )
-          face->charmap = old;
+        if ( old != cmap && !no_cmap_change )
+          FT_Set_Charmap( face, old );
       }
 
       FTC_CMAP_NODE( node )->indices[char_code -

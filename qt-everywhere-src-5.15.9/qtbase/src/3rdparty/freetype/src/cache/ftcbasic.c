@@ -4,7 +4,7 @@
  *
  *   The FreeType basic cache interface (body).
  *
- * Copyright (C) 2003-2023 by
+ * Copyright (C) 2003-2022 by
  * David Turner, Robert Wilhelm, and Werner Lemberg.
  *
  * This file is part of the FreeType project, and may only be used,
@@ -120,7 +120,8 @@
     }
 #endif
 
-    result = (FT_UInt)face->num_glyphs;
+    if ( !error )
+      result = (FT_UInt)face->num_glyphs;
 
     return result;
   }
@@ -319,7 +320,7 @@
 #if 0xFFFFFFFFUL > FT_UINT_MAX
     if ( (type->flags & (FT_ULong)FT_UINT_MAX) )
       FT_TRACE1(( "FTC_ImageCache_Lookup:"
-                  " higher bits in load_flags 0x%lx are dropped\n",
+                  " higher bits in load_flags 0x%x are dropped\n",
                   (FT_ULong)type->flags & ~((FT_ULong)FT_UINT_MAX) ));
 #endif
 
@@ -517,7 +518,7 @@
 #if 0xFFFFFFFFUL > FT_UINT_MAX
     if ( (type->flags & (FT_ULong)FT_UINT_MAX) )
       FT_TRACE1(( "FTC_ImageCache_Lookup:"
-                  " higher bits in load_flags 0x%lx are dropped\n",
+                  " higher bits in load_flags 0x%x are dropped\n",
                   (FT_ULong)type->flags & ~((FT_ULong)FT_UINT_MAX) ));
 #endif
 

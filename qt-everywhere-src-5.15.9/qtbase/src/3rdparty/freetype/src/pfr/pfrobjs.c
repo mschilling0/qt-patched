@@ -4,7 +4,7 @@
  *
  *   FreeType PFR object methods (body).
  *
- * Copyright (C) 2002-2023 by
+ * Copyright (C) 2002-2022 by
  * David Turner, Robert Wilhelm, and Werner Lemberg.
  *
  * This file is part of the FreeType project, and may only be used,
@@ -130,14 +130,14 @@
     if ( error )
       goto Exit;
 
-    /* load the physical font descriptor */
+    /* now load the physical font descriptor */
     error = pfr_phy_font_load( &face->phy_font, stream,
                                face->log_font.phys_offset,
                                face->log_font.phys_size );
     if ( error )
       goto Exit;
 
-    /* set up all root face fields */
+    /* now set up all root face fields */
     {
       PFR_PhyFont  phy_font = &face->phy_font;
 
@@ -160,7 +160,7 @@
         if ( nn == phy_font->num_chars )
         {
           if ( phy_font->num_strikes > 0 )
-            pfrface->face_flags &= ~FT_FACE_FLAG_SCALABLE;
+            pfrface->face_flags = 0;        /* not scalable */
           else
           {
             FT_ERROR(( "pfr_face_init: font doesn't contain glyphs\n" ));
@@ -170,7 +170,7 @@
         }
       }
 
-      if ( !( phy_font->flags & PFR_PHY_PROPORTIONAL ) )
+      if ( ( phy_font->flags & PFR_PHY_PROPORTIONAL ) == 0 )
         pfrface->face_flags |= FT_FACE_FLAG_FIXED_WIDTH;
 
       if ( phy_font->flags & PFR_PHY_VERTICAL )
@@ -338,7 +338,7 @@
     }
 
     /* try to load an embedded bitmap */
-    if ( !( load_flags & ( FT_LOAD_NO_SCALE | FT_LOAD_NO_BITMAP ) ) )
+    if ( ( load_flags & ( FT_LOAD_NO_SCALE | FT_LOAD_NO_BITMAP ) ) == 0 )
     {
       error = pfr_slot_load_bitmap(
                 slot,
@@ -486,16 +486,17 @@
     kerning->x = 0;
     kerning->y = 0;
 
-    /* PFR indexing skips .notdef, which becomes UINT_MAX */
-    glyph1--;
-    glyph2--;
+    if ( glyph1 > 0 )
+      glyph1--;
 
-    /* check the array bounds, .notdef is automatically out */
-    if ( glyph1 >= phy_font->num_chars ||
-         glyph2 >= phy_font->num_chars )
-      goto Exit;
+    if ( glyph2 > 0 )
+      glyph2--;
 
     /* convert glyph indices to character codes */
+    if ( glyph1 > phy_font->num_chars ||
+         glyph2 > phy_font->num_chars )
+      goto Exit;
+
     code1 = phy_font->chars[glyph1].char_code;
     code2 = phy_font->chars[glyph2].char_code;
     pair  = PFR_KERN_INDEX( code1, code2 );
