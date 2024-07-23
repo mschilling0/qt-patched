@@ -70,7 +70,7 @@ COPY "qt-patched-${QT_VERSION}.tar.gz" "qt-patched-${QT_VERSION}.tar.gz"
 RUN tar -xzf "qt-patched-${QT_VERSION}.tar.gz" && \
 ( \
 cd "qt-everywhere-src-${QT_VERSION}" && \
-./configure --prefix="${QT_INSTALL_DIR}" -release -no-use-gold-linker -qt-zlib -qt-libpng \
+./configure --prefix="${QT_INSTALL_DIR}" -release -no-use-gold-linker -qt-pcre -qt-zlib -qt-libpng \
             -no-reduce-exports -no-gstreamer -no-icu -no-openssl -no-opengl \
             -no-sqlite -skip qtwebengine -skip qtlocation -skip qtwebsockets \
             -opensource -confirm-license -bundled-xcb-xinput -xcb -xcb-xlib \
