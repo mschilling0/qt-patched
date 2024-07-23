@@ -25,3 +25,10 @@ Run `git log` to view changes in this repository from the original sources.
    This lets someone using this repository know what changed from QT's original
    sources.
 6. Update this README.md if this process changes (new links, etc)
+
+## Windows Configure Command 
+
+```console
+configure -mp -no-pch -opengl desktop -skip qtwebsockets -skip qtwebengine -skip qtlocation -skip qtconnectivity -release -shared -opensource -nomake examples -nomake tests -platform win32-msvc -c++std c++11 -confirm-license
+```
+
