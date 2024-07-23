@@ -25,3 +25,9 @@ Run `git log` to view changes in this repository from the original sources.
    This lets someone using this repository know what changed from QT's original
    sources.
 6. Update this README.md if this process changes (new links, etc)
+
+## Building on MacOS
+
+```console
+./configure --prefix="/localdisk/Qt-X.Y.Z" -release -no-use-gold-linker -qt-zlib -qt-libpng -no-reduce-exports -no-gstreamer -no-icu -no-openssl -no-opengl  -no-sqlite -skip qtwebengine -skip qtlocation -skip qtwebsockets -opensource -confirm-license -nomake examples -nomake tests
+```
